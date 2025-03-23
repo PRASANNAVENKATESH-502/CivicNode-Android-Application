@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CivicNode</string>
+    <string name="google_maps_key">YOUR_API_KEY_HERE</string>
+
+    <!-- Missing array for water complaints -->
+    <string-array name="water_complaints">
+        <item>Low water pressure</item>
+        <item>Water leakage</item>
+        <item>No water supply</item>
+        <item>Contaminated water</item>
+        <item>Broken pipeline</item>
+    </string-array>
+
+    <string-array name="water_connection_types">
+        <item>Residential</item>
+        <item>Commercial</item>
+    </string-array>
+
+    <string-array name="water_service_types">
+        <item>Repair</item>
+        <item>Maintenance</item>
+    </string-array>
+
+
+</resources>

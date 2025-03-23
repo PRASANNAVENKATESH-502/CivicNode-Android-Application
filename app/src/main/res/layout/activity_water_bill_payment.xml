@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
+    tools:context=".water.WaterBillPaymentActivity">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Water Bill Payment"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="10dp"/>
+
+    <!-- Bill Details Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvConsumerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consumer Name: John Doe"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvAccountNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Number: 1234567890"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="5dp"/>
+
+            <TextView
+                android:id="@+id/tvBillAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bill Amount: ₹750"
+                android:textSize="18sp"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                android:paddingTop="5dp"/>
+
+            <TextView
+                android:id="@+id/tvDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Due Date: 25th March 2025"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:paddingTop="5dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Payment Button -->
+    <Button
+        android:id="@+id/btnPayNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay Now"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:padding="12dp"
+        android:drawableStart="@drawable/ic_payment"
+        android:gravity="center_vertical"/>
+
+</LinearLayout>

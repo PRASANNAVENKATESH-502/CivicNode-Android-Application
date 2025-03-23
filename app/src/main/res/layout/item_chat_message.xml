@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+    <!-- Chat Bubble for Sender -->
+    <LinearLayout
+        android:id="@+id/senderLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_sender_message"
+        android:padding="10dp"
+        android:elevation="2dp"
+        android:layout_gravity="end"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvSenderMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:maxWidth="250dp" />
+
+        <TextView
+            android:id="@+id/tvSenderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+    <!-- Chat Bubble for Receiver -->
+    <LinearLayout
+        android:id="@+id/receiverLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_receiver_message"
+        android:padding="10dp"
+        android:elevation="2dp"
+        android:layout_gravity="start"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvReceiverMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:maxWidth="250dp" />
+
+        <TextView
+            android:id="@+id/tvReceiverTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="end"/>
+    </LinearLayout>
+
+</LinearLayout>

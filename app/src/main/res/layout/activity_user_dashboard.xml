@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textRaiseComplaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Raise Complaint"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/textPayBill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay Bill"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Service Notifications"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="12dp"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="8dp"/>
+
+    <RecyclerView
+        android:id="@+id/recyclerViewComplaints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textBillAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bill Amount: ₹0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/textDueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Due Date: --"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: Pending"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+    <EditText
+        android:id="@+id/editUPI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter UPI ID"
+        android:padding="12dp"
+        android:background="@android:color/darker_gray"
+        android:textSize="16sp"/>
+
+    <Button
+        android:id="@+id/btnPayBill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay Bill"
+        android:textSize="18sp"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white"
+    tools:context=".water.WaterComplaintActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Water Supply Complaint"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"/>
+
+        <!-- Complaint Type Spinner -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Complaint Type"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingTop="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerComplaintType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"
+            android:padding="8dp"
+            android:entries="@array/water_complaints"/>
+
+        <!-- Description Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complaint Description"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingTop="10dp"/>
+
+        <EditText
+            android:id="@+id/etComplaintDescription"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top"
+            android:padding="10dp"
+            android:hint="Describe the issue..."
+            android:textSize="16sp"
+            android:inputType="textMultiLine"/>
+
+        <!-- Attach Image Button -->
+        <Button
+            android:id="@+id/btnAttachImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attach Image"
+            android:backgroundTint="@color/gray"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:drawableStart="@drawable/ic_attach"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmitComplaint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Complaint"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:drawableStart="@drawable/ic_submit"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

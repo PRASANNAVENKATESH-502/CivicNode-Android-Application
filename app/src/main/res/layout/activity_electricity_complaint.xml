@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Electricity Complaint"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/complaintCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Complaint Category"
+        android:padding="12dp"
+        android:background="@android:color/darker_gray"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/complaintDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Describe your complaint..."
+        android:padding="12dp"
+        android:background="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:gravity="top"
+        android:minHeight="120dp"/>
+
+    <Button
+        android:id="@+id/submitComplaintButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Complaint"
+        android:textSize="18sp"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

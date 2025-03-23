@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:background="@color/white">
+
+    <!-- App Logo -->
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/app_logo"
+        android:contentDescription="App Logo"/>
+
+    <!-- Select Login Type -->
+    <RadioGroup
+        android:id="@+id/radioGroupLoginType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
+
+        <RadioButton
+            android:id="@+id/radioMobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile OTP"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radioEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email OTP"/>
+    </RadioGroup>
+
+    <!-- Input Field (Phone Number / Email) -->
+    <EditText
+        android:id="@+id/editTextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Mobile Number"
+        android:inputType="phone"
+        android:padding="12dp"
+        android:background="@drawable/input_field_bg"
+        android:drawableLeft="@drawable/ic_phone"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Send OTP Button -->
+    <Button
+        android:id="@+id/buttonSendOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send OTP"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- OTP Input Field (Hidden initially) -->
+    <EditText
+        android:id="@+id/editTextOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter OTP"
+        android:inputType="number"
+        android:padding="12dp"
+        android:background="@drawable/input_field_bg"
+        android:drawableLeft="@drawable/ic_otp"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Verify OTP Button (Hidden initially) -->
+    <Button
+        android:id="@+id/buttonVerifyOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verify OTP"
+        android:backgroundTint="@color/secondary"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:visibility="gone"/>
+
+</LinearLayout>
