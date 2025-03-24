@@ -2,33 +2,23 @@ package com.example.civicnodeapplication.water;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.civicnodeapplication.R;
+import com.example.civicnodeapplication.databinding.ActivityWaterServiceBinding;
 
 public class WaterServiceActivity extends AppCompatActivity {
-    private Button btnRequestConnection, btnReportIssue, btnPayBill;
+
+    private ActivityWaterServiceBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_service);
+        binding = ActivityWaterServiceBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        btnRequestConnection = findViewById(R.id.btnRequestConnection);
-        btnReportIssue = findViewById(R.id.btnReportIssue);
-        btnPayBill = findViewById(R.id.btnPayBill);
-
-        btnRequestConnection.setOnClickListener(v ->
-                startActivity(new Intent(WaterServiceActivity.this, WaterConnectionRequestActivity.class))
-        );
-
-        btnReportIssue.setOnClickListener(v ->
-                startActivity(new Intent(WaterServiceActivity.this, WaterComplaintActivity.class))
-        );
-
-        btnPayBill.setOnClickListener(v ->
-                startActivity(new Intent(WaterServiceActivity.this, WaterBillPaymentActivity.class))
-        );
+        // Fixing the incorrect button reference
+        binding.btnRequestService.setOnClickListener(v -> {
+            Intent intent = new Intent(WaterServiceActivity.this, WaterConnectionRequestActivity.class);
+            startActivity(intent);
+        });
     }
 }

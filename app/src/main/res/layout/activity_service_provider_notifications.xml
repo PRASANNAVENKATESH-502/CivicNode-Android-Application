@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <org.osmdroid.views.MapView
-        android:id="@+id/mapView"
+    <EditText
+        android:id="@+id/editTextNotificationTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:hint="Enter Notification Title"
+        android:padding="8dp"
+        android:background="@android:drawable/editbox_background" />
 
+    <EditText
+        android:id="@+id/editTextNotificationMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Notification Message"
+        android:padding="8dp"
+        android:background="@android:drawable/editbox_background"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnSendNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send Notification"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>

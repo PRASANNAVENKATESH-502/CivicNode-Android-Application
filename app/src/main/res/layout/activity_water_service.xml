@@ -23,7 +23,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
-            android:paddingBottom="10dp"/>
+            android:layout_marginBottom="12dp"/>
 
         <!-- Service Type Selection -->
         <TextView
@@ -33,7 +33,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:paddingTop="5dp"/>
+            android:layout_marginTop="8dp"/>
 
         <Spinner
             android:id="@+id/spinnerServiceType"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_background"
             android:padding="8dp"
-            android:entries="@array/water_service_types"/>
+            android:layout_marginTop="4dp"/>
 
         <!-- Address Input -->
         <TextView
@@ -51,7 +51,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:paddingTop="5dp"/>
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/etAddress"
@@ -61,7 +61,8 @@
             android:padding="10dp"
             android:hint="Enter your address"
             android:textSize="16sp"
-            android:inputType="textMultiLine"/>
+            android:inputType="text"
+            android:layout_marginTop="4dp"/>
 
         <!-- Contact Number -->
         <TextView
@@ -71,7 +72,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:paddingTop="5dp"/>
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/etContactNumber"
@@ -81,30 +82,11 @@
             android:padding="10dp"
             android:hint="Enter contact number"
             android:textSize="16sp"
-            android:inputType="phone"/>
-
-        <!-- Additional Notes -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Additional Notes (Optional)"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:paddingTop="5dp"/>
-
-        <EditText
-            android:id="@+id/etAdditionalNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edittext_background"
-            android:padding="10dp"
-            android:hint="Enter additional details"
-            android:textSize="16sp"
-            android:inputType="textMultiLine"/>
+            android:inputType="phone"
+            android:layout_marginTop="4dp"/>
 
         <!-- Request Service Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRequestService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,6 +98,5 @@
             android:gravity="center_vertical"
             android:padding="12dp"
             android:layout_marginTop="20dp"/>
-
     </LinearLayout>
 </ScrollView>

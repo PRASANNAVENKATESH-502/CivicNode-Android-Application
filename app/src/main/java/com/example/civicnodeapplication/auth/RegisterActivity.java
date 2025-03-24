@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -128,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .setActivity(this)
                 .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
-                    public void onVerificationCompleted(@NonNull PhoneAuthProvider.PhoneAuthCredential credential) {
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                         Toast.makeText(RegisterActivity.this, "OTP Auto-Detected!", Toast.LENGTH_SHORT).show();
                     }
 

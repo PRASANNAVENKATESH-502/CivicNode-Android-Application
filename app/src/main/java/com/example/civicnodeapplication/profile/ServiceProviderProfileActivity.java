@@ -1,5 +1,6 @@
 package com.example.civicnodeapplication.profile;
 
+import com.google.firebase.database.DatabaseError;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -24,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
+
+
 
 public class ServiceProviderProfileActivity extends AppCompatActivity {
     private ImageView profileImage;

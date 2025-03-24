@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ComplaintSubmissionActivity extends AppCompatActivity {
+
     private EditText editTextTitle, editTextDescription;
     private Button buttonSubmit;
     private FirebaseFirestore db;
@@ -21,11 +22,11 @@ public class ComplaintSubmissionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complaint_submission);  // ✅ Fixed layout reference
+        setContentView(R.layout.activity_complaint_submission);
 
-        editTextTitle = findViewById(R.id.editTextComplaintTitle);  // ✅ Fixed ID
-        editTextDescription = findViewById(R.id.editTextComplaintDescription);  // ✅ Fixed ID
-        buttonSubmit = findViewById(R.id.buttonSubmitComplaint);  // ✅ Fixed ID
+        editTextTitle = findViewById(R.id.editTextComplaintTitle);
+        editTextDescription = findViewById(R.id.editTextComplaintDescription);
+        buttonSubmit = findViewById(R.id.buttonSubmitComplaint);
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();

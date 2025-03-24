@@ -2,39 +2,26 @@ package com.example.civicnodeapplication.complaints;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.civicnodeapplication.R;
-import com.google.firebase.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import com.example.civicnodeapplication.complaints.Complaint;
 
 public class ComplaintStatusActivity extends AppCompatActivity {
-    private TextView textViewComplaintTitle, textViewComplaintDescription, textViewComplaintStatus, textViewComplaintDate;
+    private TextView textViewComplaintStatus;
+    private Complaint complaint;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_complaints);
+        setContentView(R.layout.activity_complaint_status);
 
-        textViewComplaintTitle = findViewById(R.id.textViewComplaintTitle);
-        textViewComplaintDescription = findViewById(R.id.textViewComplaintDescription);
         textViewComplaintStatus = findViewById(R.id.textViewComplaintStatus);
-        textViewComplaintDate = findViewById(R.id.textViewComplaintDate);
 
-        Complaint complaint = (Complaint) getIntent().getSerializableExtra("complaint");
-        if (complaint != null) {
-            textViewComplaintTitle.setText(complaint.getTitle());
-            textViewComplaintDescription.setText(complaint.getDescription());
+        if (getIntent() != null && getIntent().hasExtra("complaint")) {
+            complaint = (Complaint) getIntent().getSerializableExtra("complaint");
             textViewComplaintStatus.setText("Status: " + complaint.getStatus());
-            textViewComplaintDate.setText("Submitted on: " + formatDate(complaint.getDate()));
         }
-    }
-
-    private String formatDate(Timestamp timestamp) {
-        if (timestamp != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
-            return sdf.format(timestamp.toDate());
-        }
-        return "Unknown";
     }
 }

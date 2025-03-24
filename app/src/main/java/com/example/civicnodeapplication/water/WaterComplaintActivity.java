@@ -19,8 +19,10 @@ public class WaterComplaintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_complaint);
 
-        complaintInput = findViewById(R.id.complaintInput);
-        submitComplaintButton = findViewById(R.id.submitComplaintButton);
+        complaintInput = findViewById(R.id.etComplaintDescription);
+
+        submitComplaintButton = findViewById(R.id.btnSubmitComplaint);
+
         progressBar = findViewById(R.id.progressBar);
 
         submitComplaintButton.setOnClickListener(v -> submitComplaint());

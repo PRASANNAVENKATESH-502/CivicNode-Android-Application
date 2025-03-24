@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ai.ChatBotActivity">
+    tools:context=".ai_chatbot.ChatbotActivity">
 
     <!-- Chat List -->
     <androidx.recyclerview.widget.RecyclerView

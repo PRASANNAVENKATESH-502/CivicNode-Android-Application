@@ -7,11 +7,11 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.civicnodeapplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,6 +25,7 @@ public class ComplaintListActivity extends AppCompatActivity {
     private ComplaintAdapter complaintAdapter;
     private List<Complaint> complaintList;
     private ProgressBar progressBar;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private FirebaseFirestore db;
     private CollectionReference complaintsRef;
 
@@ -33,12 +34,22 @@ public class ComplaintListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint_list);
 
+        // Initialize Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Complaints");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         recyclerView = findViewById(R.id.recyclerViewComplaints);
         progressBar = findViewById(R.id.progressBar);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         complaintList = new ArrayList<>();
-        complaintAdapter = new ComplaintAdapter(this, complaintList, complaint -> {
+        complaintAdapter = new ComplaintAdapter(complaintList, this, complaint -> {
             Toast.makeText(ComplaintListActivity.this, "Clicked: " + complaint.getTitle(), Toast.LENGTH_SHORT).show();
         });
 
@@ -48,33 +59,34 @@ public class ComplaintListActivity extends AppCompatActivity {
         complaintsRef = db.collection("complaints");
 
         fetchComplaints();
+
+        swipeRefreshLayout.setOnRefreshListener(this::fetchComplaints);
     }
 
     private void fetchComplaints() {
         progressBar.setVisibility(View.VISIBLE);
 
-        complaintsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                progressBar.setVisibility(View.GONE);
-                if (task.isSuccessful() && task.getResult() != null) {
+        complaintsRef.get().addOnCompleteListener(task -> {
+            progressBar.setVisibility(View.GONE);
+            swipeRefreshLayout.setRefreshing(false);
+
+            if (task.isSuccessful()) {
+                QuerySnapshot value = task.getResult();
+                if (value != null) {
                     complaintList.clear();
-                    for (DocumentSnapshot document : task.getResult()) {
+                    for (DocumentSnapshot document : value) {
                         Complaint complaint = document.toObject(Complaint.class);
                         if (complaint != null) {
-                            complaint.setId(document.getId()); // Store document ID
+                            complaint.setId(document.getId());
                             complaintList.add(complaint);
                         }
                     }
                     complaintAdapter.notifyDataSetChanged();
-                } else {
-                    Log.e("ComplaintList", "Error getting complaints", task.getException());
-                    Toast.makeText(ComplaintListActivity.this, "Failed to load complaints", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Log.e("ComplaintList", "Firestore Error", task.getException());
+                Toast.makeText(ComplaintListActivity.this, "Failed to load complaints", Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
-
-
-

@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Raise Complaint -->
     <TextView
         android:id="@+id/textRaiseComplaint"
         android:layout_width="match_parent"
@@ -16,6 +17,7 @@
         android:background="@android:color/darker_gray"
         android:textColor="@android:color/white"/>
 
+    <!-- Pay Bill -->
     <TextView
         android:id="@+id/textPayBill"
         android:layout_width="match_parent"
@@ -28,6 +30,7 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="8dp"/>
 
+    <!-- Service Notifications -->
     <TextView
         android:id="@+id/textNotifications"
         android:layout_width="match_parent"
@@ -40,12 +43,15 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="8dp"/>
 
-    <RecyclerView
+    <!-- Complaints List -->
+    <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/recyclerViewComplaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"/>
 
+    <!-- Loading Indicator -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

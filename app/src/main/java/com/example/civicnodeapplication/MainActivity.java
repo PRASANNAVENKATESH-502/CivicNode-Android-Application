@@ -2,7 +2,6 @@ package com.example.civicnodeapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.civicnodeapplication.auth.LoginActivity;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         btnWaterServices = findViewById(R.id.btnWaterServices);
 
         btnLogin.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
-        btnReportIssue.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ReportIssueActivity.class)));
+        btnReportIssue.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ComplaintSubmissionActivity.class)));
         btnWaterServices.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WaterServiceActivity.class)));
     }
 }

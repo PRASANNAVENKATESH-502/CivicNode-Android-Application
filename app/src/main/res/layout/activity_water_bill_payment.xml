@@ -72,9 +72,35 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Account Number Input -->
+    <EditText
+        android:id="@+id/accountNumberInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Account Number"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:inputType="number"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="12dp"/>
+
+    <!-- Amount Input -->
+    <EditText
+        android:id="@+id/amountInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Amount"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:background="@drawable/edit_text_border"
+        android:layout_marginTop="10dp"/>
+
     <!-- Payment Button -->
     <Button
-        android:id="@+id/btnPayNow"
+        android:id="@+id/payBillButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pay Now"
@@ -86,4 +112,12 @@
         android:drawableStart="@drawable/ic_payment"
         android:gravity="center_vertical"/>
 
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

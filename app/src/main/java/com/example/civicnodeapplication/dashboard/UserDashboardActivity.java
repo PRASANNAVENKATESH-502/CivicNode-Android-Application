@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.civicnodeapplication.complaints.ComplaintAdapter;
 
 import com.example.civicnodeapplication.R;
+import com.example.civicnodeapplication.complaints.ComplaintAdapter;
 import com.example.civicnodeapplication.complaints.ComplaintSubmissionActivity;
 import com.example.civicnodeapplication.complaints.Complaint;
-import com.example.civicnodeapplication.payments.PaymentActivity;
+import com.example.civicnodeapplication.payments.BillPaymentActivity;
 import com.example.civicnodeapplication.notifications.NotificationsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDashboardActivity extends AppCompatActivity {
+public class UserDashboardActivity extends AppCompatActivity implements ComplaintAdapter.OnItemClickListener {
 
     private RecyclerView recyclerViewComplaints;
     private ComplaintAdapter complaintAdapter;
@@ -53,7 +53,7 @@ public class UserDashboardActivity extends AppCompatActivity {
 
         recyclerViewComplaints.setLayoutManager(new LinearLayoutManager(this));
         complaintList = new ArrayList<>();
-        complaintAdapter = new ComplaintAdapter(complaintList, this);
+        complaintAdapter = new ComplaintAdapter(complaintList, this, this);
         recyclerViewComplaints.setAdapter(complaintAdapter);
 
         db = FirebaseFirestore.getInstance();
@@ -92,5 +92,11 @@ public class UserDashboardActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemClick(Complaint complaint) {
+        // Handle complaint item click (e.g., show complaint details)
+        Toast.makeText(this, "Clicked: " + complaint.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }
