@@ -4,74 +4,82 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
-import com.example.civicnodeapplication.MainActivity;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.civicnodeapplication.R;
+import com.example.civicnodeapplication.dashboard.UserDashboardActivity;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.auth.*;
 import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText inputField, otpCode;
-    private Button sendOtpBtn, verifyOtpBtn;
-    private RadioGroup loginTypeGroup;
-    private RadioButton mobileRadio, emailRadio;
+
+    private EditText editTextInput, editTextOtp;
+    private Button buttonSendOtp, buttonVerifyOtp, btnLogin;
+    private RadioGroup radioGroupLoginType;
+    private ProgressBar progressBar;
+
     private FirebaseAuth mAuth;
     private String verificationId;
-    private ProgressBar progressBar;
+    private PhoneAuthProvider.ForceResendingToken resendToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        inputField = findViewById(R.id.editTextInput);
-        otpCode = findViewById(R.id.editTextOtp);
-        sendOtpBtn = findViewById(R.id.buttonSendOtp);
-        verifyOtpBtn = findViewById(R.id.buttonVerifyOtp);
-        loginTypeGroup = findViewById(R.id.radioGroupLoginType);
-        mobileRadio = findViewById(R.id.radioMobile);
-        emailRadio = findViewById(R.id.radioEmail);
+        // Linking UI Elements
+        editTextInput = findViewById(R.id.editTextInput);
+        editTextOtp = findViewById(R.id.editTextOtp);
+        buttonSendOtp = findViewById(R.id.buttonSendOtp);
+        buttonVerifyOtp = findViewById(R.id.buttonVerifyOtp);
+        btnLogin = findViewById(R.id.btnLogin);
+        radioGroupLoginType = findViewById(R.id.radioGroupLoginType);
         progressBar = findViewById(R.id.progressBar);
 
-        loginTypeGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            inputField.setHint(checkedId == R.id.radioMobile ? "Enter Mobile Number" : "Enter Email Address");
+        // Default visibility
+        editTextOtp.setVisibility(View.GONE);
+        buttonVerifyOtp.setVisibility(View.GONE);
+        btnLogin.setEnabled(false);
+
+        // Login Type Toggle
+        radioGroupLoginType.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radioMobile) {
+                editTextInput.setHint("Enter Mobile Number");
+                editTextInput.setInputType(android.text.InputType.TYPE_CLASS_PHONE);
+            } else {
+                editTextInput.setHint("Enter Email");
+                editTextInput.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+            }
         });
 
-        sendOtpBtn.setOnClickListener(v -> {
-            String phoneNumber = inputField.getText().toString().trim();
-            if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() < 10) {
-                inputField.setError("Enter a valid phone number");
-                return;
-            }
-            sendOtp(phoneNumber);
-        });
+        // Send OTP
+        buttonSendOtp.setOnClickListener(v -> sendOtp());
 
-        verifyOtpBtn.setOnClickListener(v -> {
-            String otp = otpCode.getText().toString().trim();
-            if (TextUtils.isEmpty(otp) || otp.length() < 6) {
-                otpCode.setError("Enter a valid OTP");
-                return;
-            }
-            verifyOtp(otp);
+        // Verify OTP
+        buttonVerifyOtp.setOnClickListener(v -> verifyOtp());
+
+        // Login Button
+        btnLogin.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, UserDashboardActivity.class));
+            finish();
         });
     }
 
-    private void sendOtp(String phoneNumber) {
+    private void sendOtp() {
+        String phoneNumber = editTextInput.getText().toString().trim();
+
+        if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() < 10) {
+            editTextInput.setError("Enter valid mobile number");
+            return;
+        }
+
         progressBar.setVisibility(View.VISIBLE);
+
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber("+91" + phoneNumber)
@@ -81,43 +89,50 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                                 progressBar.setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, "Verification Successful", Toast.LENGTH_SHORT).show();
                                 signInWithCredential(credential);
                             }
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
                                 progressBar.setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, "Verification Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, "Verification Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
-                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                                LoginActivity.this.verificationId = verificationId;
+                            public void onCodeSent(@NonNull String verificationId,
+                                                   @NonNull PhoneAuthProvider.ForceResendingToken token) {
                                 progressBar.setVisibility(View.GONE);
+                                LoginActivity.this.verificationId = verificationId;
+                                resendToken = token;
+                                editTextOtp.setVisibility(View.VISIBLE);
+                                buttonVerifyOtp.setVisibility(View.VISIBLE);
                                 Toast.makeText(LoginActivity.this, "OTP Sent", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .build();
+
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    private void verifyOtp(String otp) {
-        progressBar.setVisibility(View.VISIBLE);
+    private void verifyOtp() {
+        String otp = editTextOtp.getText().toString().trim();
+        if (TextUtils.isEmpty(otp) || otp.length() < 6) {
+            editTextOtp.setError("Enter valid OTP");
+            return;
+        }
+
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp);
         signInWithCredential(credential);
     }
 
     private void signInWithCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    progressBar.setVisibility(View.GONE);
+                .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                        Toast.makeText(this, "OTP Verified", Toast.LENGTH_SHORT).show();
+                        btnLogin.setEnabled(true);
                     } else {
-                        Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

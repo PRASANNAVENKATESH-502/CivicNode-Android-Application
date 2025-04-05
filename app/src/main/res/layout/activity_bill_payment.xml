@@ -13,8 +13,10 @@
         android:text="Bill Payment"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_gravity="center"
-        android:paddingBottom="20dp"/>
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:id="@+id/etAmount"
@@ -22,8 +24,8 @@
         android:layout_height="wrap_content"
         android:hint="Enter Amount"
         android:inputType="numberDecimal"
-        android:padding="10dp"
-        android:background="@android:drawable/editbox_background"
+        android:padding="12dp"
+        android:background="?android:attr/editTextBackground"
         android:layout_marginBottom="16dp"/>
 
     <Button
@@ -33,5 +35,6 @@
         android:text="Pay Now"
         android:backgroundTint="@color/purple_500"
         android:textColor="@android:color/white"
-        android:padding="10dp"/>
+        android:padding="12dp"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>

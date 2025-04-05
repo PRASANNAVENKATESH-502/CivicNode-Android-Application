@@ -3,50 +3,46 @@ package com.example.civicnodeapplication.electricity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import androidx.annotation.Nullable;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.civicnodeapplication.R;
+import com.example.civicnodeapplication.complaints.ComplaintSubmissionActivity;
+import com.example.civicnodeapplication.payments.PaymentActivity;
+import com.example.civicnodeapplication.notifications.NotificationsActivity;
 
 public class ElectricityServiceActivity extends AppCompatActivity {
-
-    private ListView listView;
-    private String[] services = {
-            "Pay Electricity Bill",
-            "Raise Electricity Complaint",
-            "Request New Connection",
-            "Request Service Change"
-    };
+    private Button raiseComplaint, payBill, serviceNotifications;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_electricity_service);
 
-        listView = findViewById(R.id.listView_services);
+        raiseComplaint = findViewById(R.id.raiseComplaint);
+        payBill = findViewById(R.id.payBill);
+        serviceNotifications = findViewById(R.id.serviceNotifications);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, services);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        raiseComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(ElectricityServiceActivity.this, ElectricityBillPaymentActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(ElectricityServiceActivity.this, ElectricityComplaintActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(ElectricityServiceActivity.this, NewConnectionRequestActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(ElectricityServiceActivity.this, ServiceChangeRequestActivity.class));
-                        break;
-                }
+            public void onClick(View v) {
+                Intent intent = new Intent(ElectricityServiceActivity.this, ComplaintSubmissionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        payBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ElectricityServiceActivity.this, PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        serviceNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ElectricityServiceActivity.this, NotificationsActivity.class);
+                startActivity(intent);
             }
         });
     }

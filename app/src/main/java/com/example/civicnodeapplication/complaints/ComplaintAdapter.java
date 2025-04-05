@@ -1,6 +1,5 @@
 package com.example.civicnodeapplication.complaints;
 
-import com.example.civicnodeapplication.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.civicnodeapplication.R;
 import java.util.List;
 
 public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.ViewHolder> {
@@ -29,15 +29,15 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_complaint, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_complaint, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Complaint complaint = complaintList.get(position);
-        holder.txtComplaintTitle.setText(complaint.getTitle());
-        holder.txtComplaintDescription.setText(complaint.getDescription());
+        holder.titleTextView.setText(complaint.getTitle());
+        holder.descriptionTextView.setText(complaint.getDescription());
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(complaint));
     }
@@ -48,12 +48,12 @@ public class ComplaintAdapter extends RecyclerView.Adapter<ComplaintAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtComplaintTitle, txtComplaintDescription;
+        TextView titleTextView, descriptionTextView;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtComplaintTitle = itemView.findViewById(R.id.txtComplaintTitle);
-            txtComplaintDescription = itemView.findViewById(R.id.txtComplaintDescription);
+            titleTextView = itemView.findViewById(R.id.complaintTitle);
+            descriptionTextView = itemView.findViewById(R.id.complaintDescription);
         }
     }
 }

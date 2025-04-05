@@ -3,75 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:gravity="center"
-    android:background="@color/white">
+    android:padding="20dp">
 
-    <RadioGroup
-        android:id="@+id/auth_method_group"
+    <!-- Email Input -->
+    <EditText
+        android:id="@+id/emailField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress" />
+
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:inputType="textPassword" />
+
+    <!-- Role Selection -->
+    <RadioGroup
+        android:id="@+id/roleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/radio_email"
+            android:id="@+id/radio_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
-            android:checked="true"/>
+            android:text="User" />
 
         <RadioButton
-            android:id="@+id/radio_phone"
+            android:id="@+id/radio_service_provider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone"/>
+            android:text="Service Provider" />
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/name_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Full Name"
-        android:padding="10dp"/>
-
-    <EditText
-        android:id="@+id/email_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email Address"
-        android:padding="10dp"/>
-
-    <EditText
-        android:id="@+id/password_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="10dp"/>
-
-    <EditText
-        android:id="@+id/phone_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:padding="10dp"
-        android:visibility="gone"/>
-
+    <!-- Register Button -->
     <Button
-        android:id="@+id/register_button"
+        android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:background="@color/primary"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:layout_marginTop="16dp"/>
+        android:text="Register" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"/>
 </LinearLayout>

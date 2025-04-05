@@ -6,21 +6,27 @@
     android:padding="20dp">
 
     <Button
-        android:id="@+id/raiseComplaint"
+        android:id="@+id/btnElectricity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Raise Complaint" />
+        android:text="Electricity Services" />
 
     <Button
-        android:id="@+id/payBill"
+        android:id="@+id/btnWater"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pay Bill" />
+        android:text="Water Services" />
 
     <Button
-        android:id="@+id/serviceNotifications"
+        android:id="@+id/btnDashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Service Notifications" />
+        android:text="User Dashboard" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Profile" />
 
 </LinearLayout>

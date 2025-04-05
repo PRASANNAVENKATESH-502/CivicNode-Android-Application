@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:orientation="vertical"
-    tools:context=".complaints.ComplaintSubmissionActivity">
+    android:padding="16dp"
+    android:background="@color/white">
 
+    <!-- Complaint Title Input -->
     <EditText
         android:id="@+id/editTextComplaintTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Complaint Title"
-        android:inputType="text" />
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/bg_input"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"/>
 
+    <!-- Complaint Description Input -->
     <EditText
         android:id="@+id/editTextComplaintDescription"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Complaint Description"
+        android:layout_height="150dp"
+        android:hint="Describe your complaint..."
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:background="@drawable/bg_input"
+        android:textColor="@color/black"
+        android:textColorHint="@color/dark_gray"
+        android:gravity="top"
         android:inputType="textMultiLine"
-        android:lines="4"
-        android:gravity="top" />
+        android:minLines="5"/>
 
+    <!-- Submit Button -->
     <Button
         android:id="@+id/buttonSubmitComplaint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit Complaint"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:layout_marginTop="16dp"/>
 </LinearLayout>

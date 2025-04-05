@@ -6,28 +6,36 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.civicnodeapplication.R;
+import com.example.civicnodeapplication.dashboard.UserDashboardActivity;
+import com.example.civicnodeapplication.dashboard.ServiceProviderDashboardActivity;
 
 public class RoleSelectionActivity extends AppCompatActivity {
-    private Button userButton, adminButton, technicianButton;
+    private Button userButton, serviceProviderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_role_selection);
 
-        // Corrected IDs to match XML file
-        userButton = findViewById(R.id.btn_user);
-        adminButton = findViewById(R.id.btn_admin);
-        technicianButton = findViewById(R.id.btn_technician);
+        userButton = findViewById(R.id.userButton);
+        serviceProviderButton = findViewById(R.id.serviceProviderButton);
 
-        userButton.setOnClickListener(v -> navigateToRegister("user"));
-        adminButton.setOnClickListener(v -> navigateToRegister("admin"));
-        technicianButton.setOnClickListener(v -> navigateToRegister("technician"));
-    }
+        userButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoleSelectionActivity.this, UserDashboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
-    private void navigateToRegister(String role) {
-        Intent intent = new Intent(RoleSelectionActivity.this, RegisterActivity.class);
-        intent.putExtra("role", role);
-        startActivity(intent);
+        serviceProviderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RoleSelectionActivity.this, ServiceProviderDashboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }
